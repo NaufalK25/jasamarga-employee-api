@@ -1,0 +1,2 @@
+docker build -t jasamarga-employee-api
+docker run -p 5000:5000 jasamarga-employee-api

@@ -1,0 +1,9 @@
+WORK_SHEET
+RAW_QUERY
+node_modules
+npm-debug.log
+Dockerfile
+.dockerignore
+.git
+.gitignore
+.env

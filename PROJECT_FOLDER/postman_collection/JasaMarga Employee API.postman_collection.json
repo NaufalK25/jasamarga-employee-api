@@ -1,0 +1,657 @@
+{
+	"info": {
+		"_postman_id": "57a991f3-86f6-44a8-aeb3-9367583b4f3f",
+		"name": "JasaMarga Employee API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17268549"
+	},
+	"item": [
+		{
+			"name": "Employee",
+			"item": [
+				{
+					"name": "Create Employee",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nik",
+									"value": "10031",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Sandi",
+									"type": "text"
+								},
+								{
+									"key": "start_date",
+									"value": "2020-01-01",
+									"type": "text"
+								},
+								{
+									"key": "end_date",
+									"value": "2030-01-01",
+									"type": "text"
+								},
+								{
+									"key": "place_of_birth",
+									"value": "Palembang",
+									"type": "text"
+								},
+								{
+									"key": "date_of_birth",
+									"value": "1982-03-12",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "Laki-Laki",
+									"type": "text"
+								},
+								{
+									"key": "is_married",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "educations[0][name]",
+									"value": "Universitas Sriwijaya",
+									"type": "text"
+								},
+								{
+									"key": "educations[0][level]",
+									"value": "Strata 1",
+									"type": "text"
+								},
+								{
+									"key": "educations[0][description]",
+									"value": "Sarjana",
+									"type": "text"
+								},
+								{
+									"key": "educations[1][name]",
+									"value": "SMAN 1 Palembang",
+									"type": "text"
+								},
+								{
+									"key": "educations[1][level]",
+									"value": "Sma",
+									"type": "text"
+								},
+								{
+									"key": "educations[1][description]",
+									"value": "Sekolah Menengah Atas",
+									"type": "text"
+								},
+								{
+									"key": "employeeFamilies[0][name]",
+									"value": "Dewi",
+									"type": "text"
+								},
+								{
+									"key": "employeeFamilies[0][identifier]",
+									"value": "20061",
+									"type": "text"
+								},
+								{
+									"key": "employeeFamilies[0][job]",
+									"value": "PNS",
+									"type": "text"
+								},
+								{
+									"key": "employeeFamilies[0][place_of_birth]",
+									"value": "Yogyakarta",
+									"type": "text"
+								},
+								{
+									"key": "employeeFamilies[0][date_of_birth]",
+									"value": "1985-07-28",
+									"type": "text"
+								},
+								{
+									"key": "employeeFamilies[0][religion]",
+									"value": "Islam",
+									"type": "text"
+								},
+								{
+									"key": "employeeFamilies[0][relation_status]",
+									"value": "Istri",
+									"type": "text"
+								},
+								{
+									"key": "employeeFamilies[1][name]",
+									"value": "Fajar",
+									"type": "text"
+								},
+								{
+									"key": "employeeFamilies[1][identifier]",
+									"value": "20062",
+									"type": "text"
+								},
+								{
+									"key": "employeeFamilies[1][job]",
+									"value": "Pelajar",
+									"type": "text"
+								},
+								{
+									"key": "employeeFamilies[1][place_of_birth]",
+									"value": "Jakarta",
+									"type": "text"
+								},
+								{
+									"key": "employeeFamilies[1][date_of_birth]",
+									"value": "2010-06-16",
+									"type": "text"
+								},
+								{
+									"key": "employeeFamilies[1][religion]",
+									"value": "Islam",
+									"type": "text"
+								},
+								{
+									"key": "employeeFamilies[1][relation_status]",
+									"value": "Anak",
+									"type": "text"
+								},
+								{
+									"key": "employeeFamilies[2][name]",
+									"value": "Karin",
+									"type": "text"
+								},
+								{
+									"key": "employeeFamilies[2][identifier]",
+									"value": "20063",
+									"type": "text"
+								},
+								{
+									"key": "employeeFamilies[2][job]",
+									"value": "Pelajar",
+									"type": "text"
+								},
+								{
+									"key": "employeeFamilies[2][place_of_birth]",
+									"value": "Palembang",
+									"type": "text"
+								},
+								{
+									"key": "employeeFamilies[2][date_of_birth]",
+									"value": "2014-11-27",
+									"type": "text"
+								},
+								{
+									"key": "employeeFamilies[2][religion]",
+									"value": "Islam",
+									"type": "text"
+								},
+								{
+									"key": "employeeFamilies[2][relation_status]",
+									"value": "Anak",
+									"type": "text"
+								},
+								{
+									"key": "prof_pict",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/avatar-1.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/employee",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"employee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Employee By Id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "is_active",
+									"value": "true",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "prof_pict",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/avatar-1.png",
+									"disabled": true
+								},
+								{
+									"key": "place_of_birth",
+									"value": "Bekasi",
+									"type": "text"
+								},
+								{
+									"key": "nik",
+									"value": "11018",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "educations[0][id]",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "educations[0][name]",
+									"value": "Binus University",
+									"type": "text"
+								},
+								{
+									"key": "employeeFamilies[0][id]",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "employeeFamilies[0][job]",
+									"value": "Wirausaha",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/employee/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"employee",
+								"3"
+							],
+							"query": [
+								{
+									"key": "is_active",
+									"value": "false",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Employee By Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/employee/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"employee",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Employees",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/employee",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"employee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Employee By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/employee/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"employee",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Employee Profile",
+			"item": [
+				{
+					"name": "Create Employee Profile",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{url}}/employee/profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"employee",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Employee Profile By Id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/employee/profile/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"employee",
+								"profile",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Employee Profile By Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/employee/profile/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"employee",
+								"profile",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Employee Profiles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/employee/profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"employee",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Employee Profile By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/employee/profile/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"employee",
+								"profile",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Employee Family",
+			"item": [
+				{
+					"name": "Create Employee Family",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{url}}/employee/family",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"employee",
+								"family"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Employee Family By Id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/employee/family/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"employee",
+								"family",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Employee Family By Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/employee/family/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"employee",
+								"family",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Employee Families",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/employee/family",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"employee",
+								"family"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Employee Family By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/employee/family/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"employee",
+								"family",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Education",
+			"item": [
+				{
+					"name": "Create Education",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{url}}/employee/education",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"employee",
+								"education"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Education By Id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/employee/education/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"employee",
+								"education",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Education By Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/employee/education/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"employee",
+								"education",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Educations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/employee/education",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"employee",
+								"education"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Education By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/employee/education/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"employee",
+								"education",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Employee Report",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

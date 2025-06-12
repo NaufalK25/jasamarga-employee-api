@@ -1,0 +1,10 @@
+https://github.com/NaufalK25/user-game-api/
+https://sequelize.org/docs/v6/other-topics/other-data-types/#enums
+https://stackoverflow.com/questions/58067349/how-to-solve-sequelize-command-not-found
+https://stackoverflow.com/questions/45437924/drop-and-create-enum-with-sequelize-correctly
+https://stackoverflow.com/questions/62275266/not-able-to-create-enum-type-attribute-using-sequelize-cli
+https://stackoverflow.com/questions/13707333/javascript-convert-date-time-string-to-epoch
+https://stackoverflow.com/questions/8039932/specifying-specific-fields-with-sequelize-nodejs-instead-of
+https://stackoverflow.com/questions/4076321/javascript-age-calculation
+https://dev.to/idmega2000/seeding-data-with-sequelize-1f3o
+https://www.postgresql.org/docs/current/functions-datetime.html
