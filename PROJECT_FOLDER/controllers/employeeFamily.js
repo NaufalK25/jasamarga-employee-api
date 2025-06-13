@@ -1,4 +1,3 @@
-const fs = require('fs');
 const { validationResult } = require('express-validator');
 const { badRequest, internalServerError, notFoundData } = require('./errors');
 const { Employee, EmployeeFamily } = require('../database/models');

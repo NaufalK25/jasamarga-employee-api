@@ -1,7 +1,7 @@
-const fs = require('fs');
 const { validationResult } = require('express-validator');
 const { badRequest, internalServerError, notFoundData } = require('./errors');
 const { Employee, EmployeeProfile } = require('../database/models');
+const { deleteFile } = require('../helper');
 
 const baseUrl = process.env.BASE_URL || 'http://localhost:5000';
 const unlinkProfilePicturePath = `${__dirname}/../uploads/profiles/`;
@@ -70,9 +70,7 @@ module.exports = {
                 }
 
                 if (req.file && oldEmployeeProfileData.profilePicture !== 'default_profile.png') {
-                    fs.unlink(`${unlinkProfilePicturePath}${oldEmployeeProfileData.prof_pict}`, err => {
-                        if (err) return internalServerError(err, req, res);
-                    });
+                    deleteFile(`${unlinkProfilePicturePath}${oldEmployeeProfileData.prof_pict}`);
                 }
 
                 await EmployeeProfile.update(after, { where: { id: employeeProfileId } });
@@ -111,9 +109,7 @@ module.exports = {
                 const profilePicture = employeeProfile.prof_pict;
 
                 if (profilePicture !== 'default_profile.png') {
-                    fs.unlink(`${unlinkProfilePicturePath}${profilePicture}`, err => {
-                        if (err) return internalServerError(err, req, res);
-                    });
+                    deleteFile(`${unlinkProfilePicturePath}${profilePicture}`);
                 }
             }
 
@@ -181,4 +177,3 @@ module.exports = {
         }
     },
 }
-

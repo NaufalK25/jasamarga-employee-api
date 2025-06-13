@@ -1,8 +1,7 @@
-const fs = require('fs');
 const { validationResult } = require('express-validator');
 const { badRequest, internalServerError, notFoundData } = require('./errors');
 const { sequelize, Education, Employee, EmployeeFamily, EmployeeProfile } = require('../database/models');
-const { calculateAge } = require('../helper');
+const { calculateAge, deleteFile } = require('../helper');
 
 const baseUrl = process.env.BASE_URL || 'http://localhost:5000';
 const unlinkProfilePicturePath = `${__dirname}/../uploads/profiles/`;
@@ -157,9 +156,7 @@ module.exports = {
                 }
 
                 if (req.file && oldEmployeeProfileData.profilePicture !== 'default_profile.png') {
-                    fs.unlink(`${unlinkProfilePicturePath}${oldEmployeeProfileData.prof_pict}`, err => {
-                        if (err) return internalServerError(err, req, res);
-                    });
+                    deleteFile(`${unlinkProfilePicturePath}${oldEmployeeProfileData.prof_pict}`);
                 }
 
                 await EmployeeProfile.update(after, { where: { id: employeeProfile.id }, transaction });
@@ -235,10 +232,16 @@ module.exports = {
         }
     },
     destroy: async (req, res) => {
+        const transaction = await sequelize.transaction();
+        let fileToDelete = null;
+
         try {
             const errors = validationResult(req);
 
-            if (!errors.isEmpty()) return badRequest(errors.array(), req, res);
+            if (!errors.isEmpty()) {
+                transaction.rollback();
+                return badRequest(errors.array(), req, res);
+            }
 
             const employeeId = req.params.id;
             const employee = await Employee.findByPk(employeeId, {
@@ -249,7 +252,10 @@ module.exports = {
                 ]
             });
 
-            if (!employee) return notFoundData(req, res);
+            if (!employee) {
+                transaction.rollback();
+                return notFoundData(req, res);
+            }
 
             const employeeProfile = await EmployeeProfile.findOne({ where: { employee_id: employeeId } });
             const educations = await Education.findAll({ where: { employee_id: employeeId } });
@@ -259,37 +265,27 @@ module.exports = {
                 const profilePicture = employeeProfile.prof_pict;
 
                 if (profilePicture !== 'default_profile.png') {
-                    fs.unlink(`${unlinkProfilePicturePath}${profilePicture}`, err => {
-                        if (err) return internalServerError(err, req, res);
-                    });
+                    fileToDelete = `${unlinkProfilePicturePath}${employeeProfile.prof_pict}`;
                 }
 
-                await EmployeeProfile.destroy({ where: { employee_id: employeeId } });
+                await EmployeeProfile.destroy({ where: { employee_id: employeeId }, transaction });
             }
 
-            educations.forEach(async education => {
-                if (education) {
-                    await Education.destroy({
-                        where: {
-                            id: education.id,
-                            employee_id: employeeId
-                        }
-                    });
-                }
-            });
+            for (const education of educations) {
+                await Education.destroy({ where: { id: education.id, employee_id: employeeId }, transaction });
+            }
 
-            employeeFamilies.forEach(async employeeFamily => {
-                if (employeeFamily) {
-                    await EmployeeFamily.destroy({
-                        where: {
-                            id: employeeFamily.id,
-                            employee_id: employeeId
-                        }
-                    });
-                }
-            });
+            for (const employeeFamily of employeeFamilies) {
+                await EmployeeFamily.destroy({ where: { id: employeeFamily.id, employee_id: employeeId }, transaction });
+            }
 
-            await Employee.destroy({ where: { id: employeeId } });
+            await Employee.destroy({ where: { id: employeeId }, transaction });
+
+            if (fileToDelete) {
+                deleteFile(fileToDelete);
+            }
+
+            transaction.commit();
 
             res.status(200).json({
                 statusCode: 200,
@@ -297,6 +293,7 @@ module.exports = {
                 data: employee
             });
         } catch (err) {
+            transaction.rollback();
             return internalServerError(err, req, res);
         }
     },

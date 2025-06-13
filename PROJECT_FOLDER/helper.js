@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 const getEndpoint = (endpoint = '/api') => {
     if (!endpoint) return '';
     endpoint = endpoint.replace(/\/api/, '');
@@ -18,7 +20,14 @@ const calculateAge = (birthDate) => {
     return years || 0;
 }
 
+const deleteFile = (path) => {
+    fs.unlink(path, err => {
+        if (err) return internalServerError(err, req, res);
+    });
+}
+
 module.exports = {
     getEndpoint,
     calculateAge,
+    deleteFile,
 }
